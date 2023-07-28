@@ -55,7 +55,9 @@
 
 - Further adjustments to support CRDS for the ``inverselinearity`` reference file. [#248]
 
-0.16.1 (2023-06-27)
+- Permit assignment of Node subclasses to tree attributes. [xxx]
+  
+  0.16.1 (2023-06-27)
 ===================
 
 A minor release to set the minimum version of RAD to 0.16.0.

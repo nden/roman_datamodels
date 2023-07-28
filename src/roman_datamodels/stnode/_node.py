@@ -149,15 +149,21 @@ class DNode(MutableMapping):
         """
         Permit assigning dict keys as attributes.
 
+        If the attribute is assigned a Node subclass (whether correct or not),
+        it will not be validated on assignment.
+
         """
 
         if key[0] != "_":
             value = self._convert_to_scalar(key, value)
             if key in self._data:
-                if will_validate():
-                    schema = _get_schema_for_property(self._schema(), key)
-                    if schema:
-                        _validate(key, value, schema, self.ctx)
+
+                if not (isinstance(value, DNode) or isinstance(value, LNode)):
+                    if will_validate():
+                        schema = _get_schema_for_property(self._schema(), key)
+                        if schema == {} or _validate(key, value, schema, self.ctx):
+                            # self._data[key] = value
+                            pass
                 self._data[key] = value
             else:
                 raise AttributeError(f"No such attribute ({key}) found in node")

@@ -601,7 +601,7 @@ def test_make_level1_science_raw():
 
 
 # WFI Level 2 Image tests
-def test_make_level2_image():
+def test_make_level2_image(tmp_path):
     wfi_image = utils.mk_level2_image(shape=(8, 8))
 
     assert wfi_image.data.dtype == np.float32
@@ -619,6 +619,19 @@ def test_make_level2_image():
     # Test validation
     wfi_image_model = datamodels.ImageModel(wfi_image)
     assert wfi_image_model.validate() is None
+
+    # Test round trip attribute access and assignment
+    aperture = wfi_image.meta.aperture
+    assert isinstance(aperture, stnode.DNode)
+    wfi_image.meta.aperture = aperture
+    assert isinstance(wfi_image.meta.aperture, stnode.DNode)
+    # Since no validation is done when assigning Nodes to attributes,
+    # test that such an instance is caught on writing to a file.
+    wfi_image.meta.aperture = utils.mk_program()
+    file_path = tmp_path / "test.asdf"
+    with pytest.raises(ValidationError):
+        wfi_image_model.to_asdf(file_path)
+
 
 
 # Test that attributes can be assigned object instances without raising exceptions
