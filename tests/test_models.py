@@ -620,7 +620,12 @@ def test_make_level2_image(tmp_path):
     wfi_image_model = datamodels.ImageModel(wfi_image)
     assert wfi_image_model.validate() is None
 
+
+# Test that attributes can be assigned subclass instances of DNode or LNode 
+def test_node_assignment(tmp_path):
     # Test round trip attribute access and assignment
+    wfi_image = utils.mk_level2_image(shape=(8, 8))
+    wfi_image_model = datamodels.ImageModel(wfi_image)
     aperture = wfi_image.meta.aperture
     assert isinstance(aperture, stnode.DNode)
     wfi_image.meta.aperture = aperture
@@ -631,6 +636,7 @@ def test_make_level2_image(tmp_path):
     file_path = tmp_path / "test.asdf"
     with pytest.raises(ValidationError):
         wfi_image_model.to_asdf(file_path)
+
 
 
 
