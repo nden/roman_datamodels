@@ -17,7 +17,7 @@
 - Added optional dq array to science raw maker utility and test. [#282]
 
 - Allow DNode and LNode subclass instances to be assigned to tree attributes (without
-  immediate validation). [#523]
+  immediate validation). [#253]
 
 
 0.17.1 (2023-08-03)
