@@ -184,7 +184,7 @@ def mk_level3_mosaic(*, shape=(4088, 4088), n_images=2, filepath=None, **kwargs)
     )
     wfi_mosaic["cal_logs"] = mk_cal_logs(**kwargs)
 
-    wfi_image["meta"]["wcs"] = None
+    wfi_mosaic["meta"]["wcs"] = None
 
     return save_node(wfi_mosaic, filepath=filepath)
 
