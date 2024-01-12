@@ -147,6 +147,9 @@ def test_override_data(node_class):
         if isinstance(value, Time):
             return value + 1 * u.day
 
+        if isinstance(value, gwcs.WCS):
+            return value.pipeline[0].transform.offset_0 += 1
+
         if isinstance(value, stnode.TaggedScalarNode):
             return value.__class__(mutate_value(value.__class__.__bases__[0](value)))
 
