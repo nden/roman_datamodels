@@ -151,7 +151,7 @@ def test_override_data(node_class):
         
         if isinstance(value, gwcs.WCS):
             w = gwcs.WCS(output_frame='icrs')
-            return None
+            return w
 
         if isinstance(value, gwcs.WCS):
             value.pipeline[0].transform.offset_0 += 1
