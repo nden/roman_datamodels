@@ -2,10 +2,10 @@ import inspect
 from unittest import mock
 
 import asdf
+import gwcs
 import pytest
 from astropy import units as u
 from astropy.time import Time
-import gwcs
 
 from roman_datamodels import datamodels, maker_utils, stnode
 from roman_datamodels.datamodels._datamodels import _RomanDataModel
