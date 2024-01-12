@@ -62,7 +62,7 @@ def _assert_value_equal(value1, value2):
     elif isinstance(value1, gwcs.WCS):
         return True
     else:
-        if not (assert value1 == value2):
+        if not (value1 == value2):
             print(f"{value1},  {value2}")
 
 
