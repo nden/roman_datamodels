@@ -64,6 +64,7 @@ def _assert_value_equal(value1, value2):
     else:
         if not (value1 == value2):
             print(f"{value1},  {value2}")
+            assert value1 == value2
 
 
 def assert_node_is_copy(node1, node2, deepcopy=False):
