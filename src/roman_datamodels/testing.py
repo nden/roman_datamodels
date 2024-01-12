@@ -59,6 +59,8 @@ def _assert_value_equal(value1, value2):
         assert_array_equal(value1, value2)
     elif isinstance(value1, Model):
         assert_model_equal(value1, value2)
+    elif isinstance(value1, gwcs.WCS):
+        assert_wcs_equal(value1, value2)
     else:
         assert value1 == value2
 
