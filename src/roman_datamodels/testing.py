@@ -60,7 +60,7 @@ def _assert_value_equal(value1, value2):
     elif isinstance(value1, Model):
         assert_model_equal(value1, value2)
     elif isinstance(value1, gwcs.WCS):
-        assert_wcs_equal(value1, value2)
+        return True
     else:
         assert value1 == value2
 
@@ -186,7 +186,3 @@ def assert_model_equal(a, b):
     assert a.bounds == b.bounds
 
     assert_model_equal(a._user_inverse, b._user_inverse)
-
-
-def assert_wcs_equal(a, b):
-    return True
