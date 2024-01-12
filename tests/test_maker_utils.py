@@ -5,6 +5,7 @@ import asdf
 import pytest
 from astropy import units as u
 from astropy.time import Time
+import gwcs
 
 from roman_datamodels import datamodels, maker_utils, stnode
 from roman_datamodels.datamodels._datamodels import _RomanDataModel
@@ -148,7 +149,8 @@ def test_override_data(node_class):
             return value + 1 * u.day
 
         if isinstance(value, gwcs.WCS):
-            return value.pipeline[0].transform.offset_0 += 1
+            value.pipeline[0].transform.offset_0 += 1
+            return value
 
         if isinstance(value, stnode.TaggedScalarNode):
             return value.__class__(mutate_value(value.__class__.__bases__[0](value)))
