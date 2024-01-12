@@ -148,6 +148,10 @@ def test_override_data(node_class):
         """
         if isinstance(value, Time):
             return value + 1 * u.day
+        
+        if isinstance(value, gwcs.WCS):
+            w = gwcs.WCS(output_frame='icrs')
+            return w
 
         if isinstance(value, gwcs.WCS):
             value.pipeline[0].transform.offset_0 += 1
